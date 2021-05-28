@@ -13,28 +13,6 @@ function bodyHasData(req,res,next){
     next();
 }
 
-function hasScore(req,res,next){
-    const { score }=req.body.data;
-    if ( score && Number.isInteger(score) ){
-        return next();
-    }
-    next({
-        status:400,
-        message:"Score field is missing or is not a number"
-    });
-}
-
-function hasContent(req,res,next){
-    const { content }=req.body.data;
-    if ( content && content.trim()!=="" ){
-        return next();
-    }
-    next({
-        status:400,
-        message:"Content field is missing or is blank"
-    });
-}
-
 async function reviewExists(req,res,next){
     req.log.debug(__filename,methodName="reviewExists");
     const { reviewId } = req.params;
